@@ -79,7 +79,6 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center; max-width: 1200px; width: 100%;
     }
-    .hero-text {}
     .hero-eyebrow {
       font-size: 0.78rem; font-weight: 600; letter-spacing: 4px;
       text-transform: uppercase; color: var(--accent);
@@ -128,7 +127,6 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* Profile card */
     .hero-photo-wrap {
       display: flex; justify-content: center; align-items: center;
       position: relative;
@@ -171,7 +169,6 @@
     .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.6;transform:scale(1.3);} }
 
-    /* stats row */
     .hero-stats {
       display: flex; gap: 40px; margin-top: 40px; padding-top: 40px;
       border-top: 1px solid var(--border);
@@ -284,47 +281,133 @@
     .filter-tab.active, .filter-tab:hover {
       background: var(--accent); border-color: var(--accent); color: var(--white);
     }
+
+    /* ── PORTFOLIO GRID (20 items) ── */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
+
+    /* First item spans 2 columns as a featured piece */
+    .portfolio-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2; /* also taller */
+      aspect-ratio: auto;
+    }
+    .portfolio-item:first-child .portfolio-placeholder {
+      height: 100%;
+      min-height: 360px;
+    }
+
     .portfolio-item {
       position: relative; border-radius: 10px; overflow: hidden;
       aspect-ratio: 4/3; background: var(--card);
       border: 1px solid var(--border);
-      cursor: pointer; group: true;
+      cursor: pointer;
     }
     .portfolio-item img {
       width: 100%; height: 100%; object-fit: cover;
       transition: transform 0.5s;
+      display: block;
     }
+    /* Hide broken images gracefully; show placeholder instead */
+    .portfolio-item img.hidden { display: none; }
+
     .portfolio-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px;
+      gap: 10px;
       transition: transform 0.5s;
+      position: absolute; inset: 0;
     }
-    .portfolio-placeholder .proj-icon { font-size: 2.5rem; }
-    .portfolio-placeholder .proj-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; }
-    .portfolio-item:hover img, .portfolio-item:hover .portfolio-placeholder { transform: scale(1.07); }
+    /* When image loads OK, hide placeholder */
+    .portfolio-item.img-loaded .portfolio-placeholder { display: none; }
+
+    .portfolio-item:hover img { transform: scale(1.07); }
+    .portfolio-item:hover .portfolio-placeholder { transform: scale(1.07); }
+
+    .proj-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem; color: rgba(168,85,247,0.25); line-height: 1;
+    }
+    .proj-icon { font-size: 1.8rem; }
+    .proj-label {
+      font-size: 0.7rem; color: var(--muted); letter-spacing: 1.5px;
+      text-transform: uppercase; text-align: center; padding: 0 12px;
+    }
+
     .portfolio-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.3) 100%);
+      background: linear-gradient(0deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.2) 100%);
       opacity: 0; transition: opacity 0.4s;
       display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 28px;
+      padding: 22px;
+      z-index: 2;
     }
     .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-    .overlay-cat { font-size: 0.72rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
-    .overlay-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .overlay-cat { font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+    .overlay-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); }
     .overlay-link {
-      margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.78rem; color: var(--accent); font-weight: 600;
+      margin-top: 10px; display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; color: var(--accent); font-weight: 600;
       text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
     }
-    /* Featured item */
-    .portfolio-item.featured { grid-column: span 2; }
+
+    /* Items hidden by "load more" */
+    .portfolio-item.hidden-item {
+      display: none;
+    }
+
+    /* Load more area */
+    .portfolio-load-more {
+      text-align: center;
+      margin-top: 44px;
+    }
+    .load-more-info {
+      font-size: 0.8rem; color: var(--muted);
+      margin-bottom: 18px; letter-spacing: 0.5px;
+    }
+    .load-more-info strong { color: var(--accent); }
+    #loadMoreBtn {
+      padding: 14px 40px; border-radius: 4px;
+      border: 1px solid var(--accent); background: transparent;
+      color: var(--accent); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s;
+    }
+    #loadMoreBtn:hover {
+      background: var(--accent); color: var(--white);
+      box-shadow: 0 0 30px rgba(168,85,247,0.4);
+    }
+    #loadMoreBtn.all-shown {
+      border-color: var(--border); color: var(--muted); cursor: default;
+    }
+    #loadMoreBtn.all-shown:hover {
+      background: transparent; color: var(--muted); box-shadow: none;
+    }
+
+    /* placeholder bg gradients per item (cycles through a set) */
+    .pg-1  { background: linear-gradient(135deg,#1a0533,#0d0d1a); }
+    .pg-2  { background: linear-gradient(135deg,#0d1a2a,#0a0a0f); }
+    .pg-3  { background: linear-gradient(135deg,#1a0a1f,#0d0a15); }
+    .pg-4  { background: linear-gradient(135deg,#1a1500,#0f0d00); }
+    .pg-5  { background: linear-gradient(135deg,#001a12,#000d09); }
+    .pg-6  { background: linear-gradient(135deg,#1a000d,#0f0008); }
+    .pg-7  { background: linear-gradient(135deg,#001020,#000810); }
+    .pg-8  { background: linear-gradient(135deg,#12001a,#080010); }
+    .pg-9  { background: linear-gradient(135deg,#1a1000,#0f0800); }
+    .pg-10 { background: linear-gradient(135deg,#001a1a,#000f0f); }
+    .pg-11 { background: linear-gradient(135deg,#18001a,#0e000f); }
+    .pg-12 { background: linear-gradient(135deg,#001218,#00090f); }
+    .pg-13 { background: linear-gradient(135deg,#1a0800,#0f0400); }
+    .pg-14 { background: linear-gradient(135deg,#00101a,#00080f); }
+    .pg-15 { background: linear-gradient(135deg,#0d1a0d,#070f07); }
+    .pg-16 { background: linear-gradient(135deg,#1a0010,#0f0008); }
+    .pg-17 { background: linear-gradient(135deg,#0a001a,#050010); }
+    .pg-18 { background: linear-gradient(135deg,#1a0a00,#0f0500); }
+    .pg-19 { background: linear-gradient(135deg,#001a08,#000f04); }
+    .pg-20 { background: linear-gradient(135deg,#1a1a00,#0f0f00); }
 
     /* ── SERVICES ── */
     #services { background: var(--black); }
@@ -348,7 +431,6 @@
       font-size: 3rem; color: var(--border); line-height: 1;
       margin-bottom: 20px;
     }
-    .service-icon { font-size: 2rem; margin-bottom: 16px; }
     .service-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 14px; }
     .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
     .service-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
@@ -386,7 +468,6 @@
     /* ── CONTACT ── */
     #contact { background: var(--black); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; margin-top: 60px; }
-    .contact-info {}
     .contact-info p { font-size: 0.95rem; color: var(--muted); line-height: 1.9; margin-bottom: 36px; }
     .contact-items { display: flex; flex-direction: column; gap: 20px; }
     .contact-item {
@@ -404,7 +485,6 @@
     }
     .contact-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
     .contact-val { font-size: 0.9rem; color: var(--text); font-weight: 500; }
-
     .contact-form { display: flex; flex-direction: column; gap: 18px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
@@ -452,6 +532,11 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+      .portfolio-item:first-child { grid-column: span 2; grid-row: span 1; }
+      .portfolio-item:first-child .portfolio-placeholder { min-height: 220px; }
+    }
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       .nav-links { display: none; }
@@ -464,14 +549,18 @@
       .hero-stats { justify-content: center; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .portfolio-item.featured { grid-column: span 1; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-item:first-child { grid-column: span 2; grid-row: span 1; }
       .services-grid { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       footer { flex-direction: column; text-align: center; }
       .about-highlights { grid-template-columns: 1fr 1fr; }
       .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-item:first-child { grid-column: span 1; }
     }
   </style>
 </head>
@@ -502,7 +591,7 @@
       </h1>
       <div class="hero-role">Graphic Designer</div>
       <p class="hero-desc">
-        Crafting visual identities that don't just look beautiful — they <em>mean</em> something. 
+        Crafting visual identities that don't just look beautiful — they <em>mean</em> something.
         I translate ideas, values, and stories into designs that leave a lasting impression on every audience they reach.
       </p>
       <div class="hero-ctas">
@@ -560,18 +649,10 @@
         <div class="about-tag">Designer</div>
       </div>
       <div class="about-content">
-        <p>
-          Hello! I'm <strong>Bishwash Acharya</strong>, a passionate Graphic Designer from the heart of Jhapa, Nepal. My journey with design began with a fascination for how visuals can carry emotion, tell stories, and move people — often without a single word.
-        </p>
-        <p>
-          Over the years, I've honed a craft that sits at the intersection of <strong>strategy and aesthetics</strong>. I don't just make things look good — I make them work. Every color choice, every type pairing, every composition is a deliberate decision in service of the message.
-        </p>
-        <p>
-          Whether you're a startup looking to make your mark, an established brand ready to evolve, or a creative looking for a collaborator who thinks as deeply as they design — <strong>I'm that person.</strong> My work has helped clients elevate their presence, command attention, and build lasting recognition in competitive markets.
-        </p>
-        <p>
-          Based in Arjundhara, Jhapa, I bring a <strong>global design sensibility with local roots</strong> — and I believe that's what makes my work genuinely distinctive.
-        </p>
+        <p>Hello! I'm <strong>Bishwash Acharya</strong>, a passionate Graphic Designer from the heart of Jhapa, Nepal. My journey with design began with a fascination for how visuals can carry emotion, tell stories, and move people — often without a single word.</p>
+        <p>Over the years, I've honed a craft that sits at the intersection of <strong>strategy and aesthetics</strong>. I don't just make things look good — I make them work. Every color choice, every type pairing, every composition is a deliberate decision in service of the message.</p>
+        <p>Whether you're a startup looking to make your mark, an established brand ready to evolve, or a creative looking for a collaborator who thinks as deeply as they design — <strong>I'm that person.</strong></p>
+        <p>Based in Arjundhara, Jhapa, I bring a <strong>global design sensibility with local roots</strong> — and I believe that's what makes my work genuinely distinctive.</p>
         <div class="about-highlights">
           <div class="highlight-item">
             <div class="highlight-icon">🎨</div>
@@ -650,7 +731,7 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
+<!-- PORTFOLIO — 20 project slots -->
 <section id="portfolio">
   <div class="container">
     <div class="portfolio-header reveal">
@@ -666,12 +747,26 @@
         <button class="filter-tab">Motion</button>
       </div>
     </div>
-    <div class="portfolio-grid reveal">
-      <!-- Featured -->
-      <div class="portfolio-item featured">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a0533,#0d0d1a);">
+
+    <!-- 
+      ════════════════════════════════════════════════
+      HOW TO ADD YOUR IMAGES:
+      Place design1.png, project2.jpg … project20.jpg
+      in the same folder as this HTML file.
+      Each <img> below already references the right filename.
+      The dark gradient card shows automatically if the
+      image file is missing — no other changes needed.
+      ════════════════════════════════════════════════
+    -->
+    <div class="portfolio-grid reveal" id="portfolioGrid">
+
+      <!-- PROJECT 1 — Featured (spans 2 cols × 2 rows) -->
+      <div class="portfolio-item" data-cat="Branding">
+        <img src="project1.jpg" alt="Project 1" loading="lazy">
+        <div class="portfolio-placeholder pg-1">
+          <div class="proj-num">01</div>
           <div class="proj-icon">🎨</div>
-          <div class="proj-label">Upload your design here</div>
+          <div class="proj-label">project1.jpg</div>
         </div>
         <div class="portfolio-overlay">
           <div class="overlay-cat">Brand Identity</div>
@@ -679,10 +774,14 @@
           <a href="#" class="overlay-link">View Project →</a>
         </div>
       </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#0d1a2a,#0a0a0f);">
+
+      <!-- PROJECT 2 -->
+      <div class="portfolio-item" data-cat="Packaging">
+        <img src="project2.jpg" alt="Project 2" loading="lazy">
+        <div class="portfolio-placeholder pg-2">
+          <div class="proj-num">02</div>
           <div class="proj-icon">📦</div>
-          <div class="proj-label">Upload your design here</div>
+          <div class="proj-label">project2.jpg</div>
         </div>
         <div class="portfolio-overlay">
           <div class="overlay-cat">Packaging</div>
@@ -690,10 +789,14 @@
           <a href="#" class="overlay-link">View Project →</a>
         </div>
       </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a0a1f,#0d0a15);">
+
+      <!-- PROJECT 3 -->
+      <div class="portfolio-item" data-cat="Print">
+        <img src="project3.jpg" alt="Project 3" loading="lazy">
+        <div class="portfolio-placeholder pg-3">
+          <div class="proj-num">03</div>
           <div class="proj-icon">📰</div>
-          <div class="proj-label">Upload your design here</div>
+          <div class="proj-label">project3.jpg</div>
         </div>
         <div class="portfolio-overlay">
           <div class="overlay-cat">Print</div>
@@ -701,10 +804,14 @@
           <a href="#" class="overlay-link">View Project →</a>
         </div>
       </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a1500,#0f0d00);">
+
+      <!-- PROJECT 4 -->
+      <div class="portfolio-item" data-cat="Digital">
+        <img src="project4.jpg" alt="Project 4" loading="lazy">
+        <div class="portfolio-placeholder pg-4">
+          <div class="proj-num">04</div>
           <div class="proj-icon">🖼️</div>
-          <div class="proj-label">Upload your design here</div>
+          <div class="proj-label">project4.jpg</div>
         </div>
         <div class="portfolio-overlay">
           <div class="overlay-cat">Digital</div>
@@ -712,10 +819,14 @@
           <a href="#" class="overlay-link">View Project →</a>
         </div>
       </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#001a12,#000d09);">
+
+      <!-- PROJECT 5 -->
+      <div class="portfolio-item" data-cat="Branding">
+        <img src="project5.jpg" alt="Project 5" loading="lazy">
+        <div class="portfolio-placeholder pg-5">
+          <div class="proj-num">05</div>
           <div class="proj-icon">✒️</div>
-          <div class="proj-label">Upload your design here</div>
+          <div class="proj-label">project5.jpg</div>
         </div>
         <div class="portfolio-overlay">
           <div class="overlay-cat">Illustration</div>
@@ -723,10 +834,14 @@
           <a href="#" class="overlay-link">View Project →</a>
         </div>
       </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a000d,#0f0008);">
+
+      <!-- PROJECT 6 -->
+      <div class="portfolio-item" data-cat="Motion">
+        <img src="project6.jpg" alt="Project 6" loading="lazy">
+        <div class="portfolio-placeholder pg-6">
+          <div class="proj-num">06</div>
           <div class="proj-icon">🎬</div>
-          <div class="proj-label">Upload your design here</div>
+          <div class="proj-label">project6.jpg</div>
         </div>
         <div class="portfolio-overlay">
           <div class="overlay-cat">Motion</div>
@@ -734,10 +849,225 @@
           <a href="#" class="overlay-link">View Project →</a>
         </div>
       </div>
+
+      <!-- PROJECT 7 -->
+      <div class="portfolio-item" data-cat="Print">
+        <img src="project7.jpg" alt="Project 7" loading="lazy">
+        <div class="portfolio-placeholder pg-7">
+          <div class="proj-num">07</div>
+          <div class="proj-icon">📋</div>
+          <div class="proj-label">project7.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Print</div>
+          <div class="overlay-title">Brochure & Stationery Set</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 8 -->
+      <div class="portfolio-item" data-cat="Digital">
+        <img src="project8.jpg" alt="Project 8" loading="lazy">
+        <div class="portfolio-placeholder pg-8">
+          <div class="proj-num">08</div>
+          <div class="proj-icon">💻</div>
+          <div class="proj-label">project8.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">UI/UX</div>
+          <div class="overlay-title">App Interface Design</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 9 — initially hidden (load more) -->
+      <div class="portfolio-item hidden-item" data-cat="Branding">
+        <img src="project9.jpg" alt="Project 9" loading="lazy">
+        <div class="portfolio-placeholder pg-9">
+          <div class="proj-num">09</div>
+          <div class="proj-icon">🏷️</div>
+          <div class="proj-label">project9.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Branding</div>
+          <div class="overlay-title">Logo & Typeface Design</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 10 -->
+      <div class="portfolio-item hidden-item" data-cat="Packaging">
+        <img src="project10.jpg" alt="Project 10" loading="lazy">
+        <div class="portfolio-placeholder pg-10">
+          <div class="proj-num">10</div>
+          <div class="proj-icon">🧴</div>
+          <div class="proj-label">project10.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Packaging</div>
+          <div class="overlay-title">Cosmetic Label Design</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 11 -->
+      <div class="portfolio-item hidden-item" data-cat="Digital">
+        <img src="project11.jpg" alt="Project 11" loading="lazy">
+        <div class="portfolio-placeholder pg-11">
+          <div class="proj-num">11</div>
+          <div class="proj-icon">📱</div>
+          <div class="proj-label">project11.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Digital</div>
+          <div class="overlay-title">Instagram Content Kit</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 12 -->
+      <div class="portfolio-item hidden-item" data-cat="Motion">
+        <img src="project12.jpg" alt="Project 12" loading="lazy">
+        <div class="portfolio-placeholder pg-12">
+          <div class="proj-num">12</div>
+          <div class="proj-icon">🎞️</div>
+          <div class="proj-label">project12.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Motion</div>
+          <div class="overlay-title">Motion Reel & Explainer</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 13 -->
+      <div class="portfolio-item hidden-item" data-cat="Print">
+        <img src="project13.jpg" alt="Project 13" loading="lazy">
+        <div class="portfolio-placeholder pg-13">
+          <div class="proj-num">13</div>
+          <div class="proj-icon">🗓️</div>
+          <div class="proj-label">project13.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Print</div>
+          <div class="overlay-title">Annual Report & Calendar</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 14 -->
+      <div class="portfolio-item hidden-item" data-cat="Branding">
+        <img src="project14.jpg" alt="Project 14" loading="lazy">
+        <div class="portfolio-placeholder pg-14">
+          <div class="proj-num">14</div>
+          <div class="proj-icon">🚀</div>
+          <div class="proj-label">project14.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Branding</div>
+          <div class="overlay-title">Startup Brand Launch</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 15 -->
+      <div class="portfolio-item hidden-item" data-cat="Digital">
+        <img src="project15.jpg" alt="Project 15" loading="lazy">
+        <div class="portfolio-placeholder pg-15">
+          <div class="proj-num">15</div>
+          <div class="proj-icon">🎯</div>
+          <div class="proj-label">project15.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Digital</div>
+          <div class="overlay-title">Ad Banner Campaign</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 16 -->
+      <div class="portfolio-item hidden-item" data-cat="Packaging">
+        <img src="project16.jpg" alt="Project 16" loading="lazy">
+        <div class="portfolio-placeholder pg-16">
+          <div class="proj-num">16</div>
+          <div class="proj-icon">🍃</div>
+          <div class="proj-label">project16.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Packaging</div>
+          <div class="overlay-title">Eco Product Packaging</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 17 -->
+      <div class="portfolio-item hidden-item" data-cat="Motion">
+        <img src="project17.jpg" alt="Project 17" loading="lazy">
+        <div class="portfolio-placeholder pg-17">
+          <div class="proj-num">17</div>
+          <div class="proj-icon">🎵</div>
+          <div class="proj-label">project17.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Motion</div>
+          <div class="overlay-title">Music Video Art Direction</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 18 -->
+      <div class="portfolio-item hidden-item" data-cat="Print">
+        <img src="project18.jpg" alt="Project 18" loading="lazy">
+        <div class="portfolio-placeholder pg-18">
+          <div class="proj-num">18</div>
+          <div class="proj-icon">🗺️</div>
+          <div class="proj-label">project18.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Print</div>
+          <div class="overlay-title">Event Poster Series</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 19 -->
+      <div class="portfolio-item hidden-item" data-cat="Branding">
+        <img src="project19.jpg" alt="Project 19" loading="lazy">
+        <div class="portfolio-placeholder pg-19">
+          <div class="proj-num">19</div>
+          <div class="proj-icon">🏪</div>
+          <div class="proj-label">project19.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Branding</div>
+          <div class="overlay-title">Retail Brand Identity</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+      <!-- PROJECT 20 -->
+      <div class="portfolio-item hidden-item" data-cat="Digital">
+        <img src="project20.jpg" alt="Project 20" loading="lazy">
+        <div class="portfolio-placeholder pg-20">
+          <div class="proj-num">20</div>
+          <div class="proj-icon">🌟</div>
+          <div class="proj-label">project20.jpg</div>
+        </div>
+        <div class="portfolio-overlay">
+          <div class="overlay-cat">Digital</div>
+          <div class="overlay-title">Full Digital Brand Suite</div>
+          <a href="#" class="overlay-link">View Project →</a>
+        </div>
+      </div>
+
+    </div><!-- /portfolio-grid -->
+
+    <!-- Load More -->
+    <div class="portfolio-load-more reveal">
+      <p class="load-more-info">Showing <strong id="shownCount">8</strong> of <strong>20</strong> projects</p>
+      <button id="loadMoreBtn">Load More Projects</button>
     </div>
-    <div style="text-align:center; margin-top:50px;" class="reveal">
-      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:20px;">💡 Replace the placeholders above by adding your design images to the same folder as this file.</p>
-    </div>
+
   </div>
 </section>
 
@@ -946,7 +1276,7 @@
 </footer>
 
 <script>
-  // Scroll reveal
+  /* ── Scroll reveal ── */
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
@@ -958,15 +1288,82 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => obs.observe(r));
 
-  // Filter tabs
+  /* ── Image load detection ──
+     When an image loads successfully, hide the placeholder behind it.
+     When it errors, keep the placeholder visible.                        */
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    const img = item.querySelector('img');
+    const placeholder = item.querySelector('.portfolio-placeholder');
+    if (!img || !placeholder) return;
+
+    // Initially show placeholder on top; image sits below
+    img.style.position = 'relative';
+    img.style.zIndex = '1';
+    placeholder.style.zIndex = '0';
+
+    img.addEventListener('load', () => {
+      // Image loaded — slide it on top
+      placeholder.style.display = 'none';
+    });
+    img.addEventListener('error', () => {
+      // Image missing — keep placeholder
+      img.style.display = 'none';
+      placeholder.style.position = 'relative';
+    });
+  });
+
+  /* ── Load More ── */
+  const INITIAL_SHOW = 8;
+  const BATCH = 4; // items to reveal per click
+  const allItems = Array.from(document.querySelectorAll('.portfolio-item'));
+  let shown = INITIAL_SHOW;
+
+  const btn = document.getElementById('loadMoreBtn');
+  const countEl = document.getElementById('shownCount');
+
+  function updateCounter() {
+    countEl.textContent = Math.min(shown, allItems.length);
+  }
+
+  btn.addEventListener('click', () => {
+    const toShow = allItems.slice(shown, shown + BATCH);
+    toShow.forEach(item => {
+      item.classList.remove('hidden-item');
+      // Trigger a tiny reflow so the lazy images start loading
+      const img = item.querySelector('img');
+      if (img && img.dataset.src) { img.src = img.dataset.src; }
+    });
+    shown = Math.min(shown + BATCH, allItems.length);
+    updateCounter();
+
+    if (shown >= allItems.length) {
+      btn.textContent = 'All Projects Shown';
+      btn.classList.add('all-shown');
+      btn.disabled = true;
+    }
+  });
+
+  /* ── Filter tabs ── */
   document.querySelectorAll('.filter-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
+
+      const cat = tab.textContent.trim();
+
+      // Show/hide based on category; always show up to `shown` items
+      allItems.forEach((item, idx) => {
+        const match = cat === 'All' || item.dataset.cat === cat;
+        if (match) {
+          item.style.display = idx < shown ? '' : 'none';
+        } else {
+          item.style.display = 'none';
+        }
+      });
     });
   });
 
-  // Form submit
+  /* ── Form submit ── */
   function handleSubmit(e) {
     e.preventDefault();
     document.getElementById('form-success').style.display = 'block';
@@ -974,18 +1371,10 @@
     setTimeout(() => document.getElementById('form-success').style.display = 'none', 5000);
   }
 
-  // Nav shrink on scroll
+  /* ── Nav shrink on scroll ── */
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     nav.style.padding = window.scrollY > 50 ? '12px 60px' : '20px 60px';
-  });
-
-  // Animate letters on hero name
-  window.addEventListener('load', () => {
-    const nameEl = document.querySelector('.hero-name');
-    if (!nameEl) return;
-    // Staggered CSS animation trigger
-    nameEl.style.animation = 'fadeInUp 0.9s ease forwards';
   });
 </script>
 </body>
