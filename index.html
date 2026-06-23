@@ -38,13 +38,11 @@
       background: rgba(10,10,15,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
+      transition: padding 0.3s;
     }
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 3px;
-      color: var(--white);
+      font-size: 1.6rem; letter-spacing: 3px; color: var(--white);
     }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 36px; list-style: none; }
@@ -59,9 +57,8 @@
     #hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 120px 60px 60px;
+      position: relative; overflow: hidden;
+      padding: 120px 60px 80px;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
@@ -77,17 +74,14 @@
     .hero-inner {
       position: relative; z-index: 1;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center; max-width: 1200px; width: 100%;
+      gap: 80px; align-items: center; max-width: 1100px; width: 100%;
     }
-    .hero-text {}
     .hero-eyebrow {
       font-size: 0.78rem; font-weight: 600; letter-spacing: 4px;
       text-transform: uppercase; color: var(--accent);
       margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
     }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
-    }
+    .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
     .hero-name {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 6vw, 5.5rem);
@@ -98,67 +92,38 @@
     .hero-role {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-      letter-spacing: 6px; color: var(--muted);
-      margin-bottom: 28px;
+      letter-spacing: 6px; color: var(--muted); margin-bottom: 28px;
     }
     .hero-desc {
-      font-size: 1rem; color: var(--muted); line-height: 1.8;
-      max-width: 460px; margin-bottom: 40px;
+      font-size: 1rem; color: var(--muted); line-height: 1.85;
+      max-width: 460px;
     }
-    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      padding: 14px 32px; border-radius: 4px;
-      background: var(--accent); color: var(--white);
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; text-decoration: none;
-      transition: all 0.3s; border: none; cursor: pointer;
-      box-shadow: 0 0 30px rgba(168,85,247,0.35);
-    }
-    .btn-primary:hover {
-      background: var(--accent2);
-      box-shadow: 0 0 40px rgba(168,85,247,0.55);
-      transform: translateY(-2px);
-    }
-    .btn-outline {
-      padding: 14px 32px; border-radius: 4px;
-      border: 1px solid var(--border); color: var(--text);
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; text-decoration: none;
-      transition: all 0.3s; background: transparent;
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* Profile card */
+    /* Profile photo */
     .hero-photo-wrap {
       display: flex; justify-content: center; align-items: center;
-      position: relative;
     }
     .photo-ring {
       position: relative; width: 340px; height: 340px;
     }
     .photo-ring::before {
-      content: ''; position: absolute; inset: -8px;
-      border-radius: 50%;
+      content: ''; position: absolute; inset: -8px; border-radius: 50%;
       border: 1.5px solid transparent;
       background: linear-gradient(135deg, var(--accent), transparent, var(--accent2)) border-box;
       -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
+      -webkit-mask-composite: destination-out; mask-composite: exclude;
       animation: spin 8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .photo-ring img, .photo-placeholder {
       width: 340px; height: 340px; border-radius: 50%;
       object-fit: cover; object-position: top center;
-      border: 3px solid var(--border);
-      display: block;
+      border: 3px solid var(--border); display: block;
     }
     .photo-placeholder {
       background: var(--card);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
     }
-    .photo-placeholder svg { opacity: 0.3; }
     .photo-placeholder span { font-size: 0.8rem; color: var(--muted); letter-spacing: 1px; }
     .badge {
       position: absolute; bottom: 10px; right: -10px;
@@ -171,20 +136,9 @@
     .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.6;transform:scale(1.3);} }
 
-    /* stats row */
-    .hero-stats {
-      display: flex; gap: 40px; margin-top: 40px; padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 900; color: var(--white);
-    }
-    .stat-num span { color: var(--accent); }
-    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
-
-    /* ── SECTIONS SHARED ── */
-    section { padding: 110px 60px; }
+    /* ── SHARED ── */
+    section { padding: 100px 60px; }
+    .container { max-width: 1100px; margin: 0 auto; }
     .section-eyebrow {
       font-size: 0.78rem; font-weight: 600; letter-spacing: 4px;
       text-transform: uppercase; color: var(--accent);
@@ -196,8 +150,8 @@
       font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
       color: var(--white); line-height: 1.15; margin-bottom: 20px;
     }
-    .section-sub { font-size: 1rem; color: var(--muted); line-height: 1.8; max-width: 560px; }
-    .container { max-width: 1200px; margin: 0 auto; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── ABOUT ── */
     #about { background: var(--dark); }
@@ -221,179 +175,65 @@
       font-size: 0.78rem; font-weight: 700; letter-spacing: 2px;
       text-transform: uppercase; padding: 8px 16px;
       writing-mode: vertical-rl; text-orientation: mixed;
-      transform: rotate(180deg);
-      border-radius: 4px;
+      transform: rotate(180deg); border-radius: 4px;
     }
     .about-content p {
-      font-size: 1rem; color: var(--muted); line-height: 1.9;
-      margin-bottom: 20px;
+      font-size: 1rem; color: var(--muted); line-height: 1.9; margin-bottom: 20px;
     }
+    .about-content p:last-child { margin-bottom: 0; }
     .about-content p strong { color: var(--text); }
-    .about-highlights {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin-top: 36px;
-    }
-    .highlight-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px;
-      transition: border-color 0.3s;
-    }
-    .highlight-item:hover { border-color: var(--accent); }
-    .highlight-icon { font-size: 1.4rem; margin-bottom: 8px; }
-    .highlight-label { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .highlight-val { font-size: 0.78rem; color: var(--muted); }
 
-    /* ── SKILLS ── */
-    #skills { background: var(--black); }
-    .skills-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 20px; }
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
+    /* ── EDUCATION ── */
+    #education { background: var(--black); }
+    .edu-timeline {
+      position: relative; margin-top: 60px; padding-left: 40px;
     }
-    .skill-card {
+    .edu-timeline::before {
+      content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+      border-radius: 2px;
+    }
+    .edu-item {
+      position: relative; margin-bottom: 32px;
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 28px 24px;
-      transition: all 0.3s; cursor: default;
-      position: relative; overflow: hidden;
+      border-radius: 10px; padding: 28px 32px; transition: all 0.3s;
     }
-    .skill-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      height: 3px; width: 0; background: var(--accent);
-      transition: width 0.4s;
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-item::before {
+      content: ''; position: absolute; left: -48px; top: 32px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--accent); border: 3px solid var(--black);
+      box-shadow: 0 0 12px rgba(168,85,247,0.5);
     }
-    .skill-card:hover::before { width: 100%; }
-    .skill-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-    .skill-icon { font-size: 1.8rem; margin-bottom: 14px; }
-    .skill-name { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .skill-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
-    .skill-level {
-      margin-top: 14px; height: 3px; background: var(--border); border-radius: 2px;
+    .edu-item:hover { border-color: var(--accent); transform: translateX(6px); }
+    .edu-item.current { border-color: rgba(168,85,247,0.4); }
+    .edu-item.current::before { background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,0.5); }
+    .edu-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 4px 12px;
+      border-radius: 50px; margin-bottom: 12px;
     }
-    .skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 2px; }
-
-    /* ── PORTFOLIO ── */
-    #portfolio { background: var(--dark); }
-    .portfolio-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; flex-wrap: wrap; gap: 20px; }
-    .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
-    .filter-tab {
-      padding: 8px 20px; border-radius: 50px;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      border: 1px solid var(--border); background: transparent;
-      color: var(--muted); cursor: pointer; transition: all 0.3s;
-    }
-    .filter-tab.active, .filter-tab:hover {
-      background: var(--accent); border-color: var(--accent); color: var(--white);
-    }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .portfolio-item {
-      position: relative; border-radius: 10px; overflow: hidden;
-      aspect-ratio: 4/3; background: var(--card);
-      border: 1px solid var(--border);
-      cursor: pointer; group: true;
-    }
-    .portfolio-item img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.5s;
-    }
-    .portfolio-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px;
-      transition: transform 0.5s;
-    }
-    .portfolio-placeholder .proj-icon { font-size: 2.5rem; }
-    .portfolio-placeholder .proj-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; }
-    .portfolio-item:hover img, .portfolio-item:hover .portfolio-placeholder { transform: scale(1.07); }
-    .portfolio-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.3) 100%);
-      opacity: 0; transition: opacity 0.4s;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 28px;
-    }
-    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-    .overlay-cat { font-size: 0.72rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
-    .overlay-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
-    .overlay-link {
-      margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.78rem; color: var(--accent); font-weight: 600;
-      text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
-    }
-    /* Featured item */
-    .portfolio-item.featured { grid-column: span 2; }
-
-    /* ── SERVICES ── */
-    #services { background: var(--black); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
-    .service-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 36px 32px;
-      transition: all 0.3s; position: relative; overflow: hidden;
-    }
-    .service-card::after {
-      content: ''; position: absolute; top: 0; right: 0;
-      width: 60px; height: 60px;
-      background: var(--accent-glow);
-      border-radius: 0 10px 0 60px;
-      transition: all 0.4s;
-    }
-    .service-card:hover::after { width: 120px; height: 120px; }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(0,0,0,0.4); border-color: var(--accent); }
-    .service-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem; color: var(--border); line-height: 1;
-      margin-bottom: 20px;
-    }
-    .service-icon { font-size: 2rem; margin-bottom: 16px; }
-    .service-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 14px; }
-    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
-    .service-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
-    .tag {
-      font-size: 0.7rem; padding: 4px 12px; border-radius: 50px;
-      border: 1px solid var(--border); color: var(--muted);
-    }
-
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--dark); }
-    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
-    .testi-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 32px;
-      transition: all 0.3s;
-    }
-    .testi-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .testi-quote {
+    .edu-badge.past { background: rgba(168,85,247,0.12); color: var(--accent); border: 1px solid rgba(168,85,247,0.3); }
+    .edu-badge.active { background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+    .edu-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .edu-degree {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem; color: var(--accent); line-height: 1;
-      margin-bottom: 16px;
+      font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 6px;
     }
-    .testi-text { font-size: 0.92rem; color: var(--muted); line-height: 1.8; margin-bottom: 24px; font-style: italic; }
-    .testi-author { display: flex; align-items: center; gap: 14px; }
-    .testi-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 700; color: var(--white);
-    }
-    .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
-    .testi-role-label { font-size: 0.76rem; color: var(--muted); }
-    .stars { color: #fbbf24; font-size: 0.8rem; margin-bottom: 16px; }
+    .edu-school { font-size: 0.9rem; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+    .edu-location { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .edu-location::before { content: '📍'; font-size: 0.75rem; }
 
     /* ── CONTACT ── */
-    #contact { background: var(--black); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; margin-top: 60px; }
-    .contact-info {}
-    .contact-info p { font-size: 0.95rem; color: var(--muted); line-height: 1.9; margin-bottom: 36px; }
-    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    #contact { background: var(--dark); }
+    .contact-items { display: flex; flex-direction: column; gap: 16px; margin-top: 50px; max-width: 600px; }
     .contact-item {
       display: flex; align-items: center; gap: 20px;
       padding: 18px 24px; border-radius: 8px;
       background: var(--card); border: 1px solid var(--border);
-      transition: border-color 0.3s;
+      transition: border-color 0.3s; text-decoration: none; color: inherit;
     }
     .contact-item:hover { border-color: var(--accent); }
     .contact-icon {
@@ -405,51 +245,60 @@
     .contact-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
     .contact-val { font-size: 0.9rem; color: var(--text); font-weight: 500; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 18px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group label { font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
-    .form-group input, .form-group textarea, .form-group select {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 6px; padding: 14px 16px;
-      color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.9rem;
-      transition: border-color 0.3s; outline: none; resize: vertical;
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
-    .form-group textarea { min-height: 130px; }
-    .form-group select option { background: var(--card); }
-    .form-submit {
-      padding: 16px; background: var(--accent);
-      color: var(--white); border: none; border-radius: 6px;
-      font-size: 0.88rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; cursor: pointer; transition: all 0.3s;
-      box-shadow: 0 0 30px rgba(168,85,247,0.3);
-    }
-    .form-submit:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 0 40px rgba(168,85,247,0.5); }
-
     /* ── FOOTER ── */
     footer {
-      background: var(--dark); border-top: 1px solid var(--border);
-      padding: 50px 60px;
+      background: var(--black); border-top: 1px solid var(--border);
+      padding: 36px 60px;
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 24px;
+      flex-wrap: wrap; gap: 20px;
     }
     .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 3px; color: var(--white); }
     .footer-logo span { color: var(--accent); }
     .footer-copy { font-size: 0.8rem; color: var(--muted); }
-    .footer-socials { display: flex; gap: 14px; }
-    .social-btn {
-      width: 40px; height: 40px; border-radius: 8px;
-      border: 1px solid var(--border); background: var(--card);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; cursor: pointer; transition: all 0.3s;
-      text-decoration: none; color: var(--muted);
-    }
-    .social-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+    /* ── IDOLS ── */
+    #idols { background: var(--dark); }
+    .idols-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 50px;
+    }
+    .idol-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .idol-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .idol-img-wrap {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+      background: var(--border);
+    }
+    .idol-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      display: block; transition: transform 0.4s;
+    }
+    .idol-card:hover .idol-img-wrap img { transform: scale(1.04); }
+    .idol-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem;
+      color: var(--muted); letter-spacing: 2px;
+      background: linear-gradient(135deg, #1a0533, #0d0d1a);
+    }
+    .idol-header {
+      padding: 24px 28px 0;
+    }
+    .idol-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 4px;
+    }
+    .idol-tag {
+      font-size: 0.72rem; color: var(--accent); letter-spacing: 1.5px;
+      text-transform: uppercase; font-weight: 600;
+    }
+    .idol-desc {
+      font-size: 0.92rem; color: var(--muted); line-height: 1.85;
+      padding: 16px 28px 28px;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -460,18 +309,11 @@
       .hero-inner { grid-template-columns: 1fr; gap: 50px; text-align: center; }
       .hero-photo-wrap { order: -1; }
       .hero-eyebrow { justify-content: center; }
-      .hero-ctas { justify-content: center; }
-      .hero-stats { justify-content: center; }
+      .hero-desc { margin: 0 auto; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .portfolio-item.featured { grid-column: span 1; }
-      .services-grid { grid-template-columns: 1fr; }
-      .testi-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .idols-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; }
-      .about-highlights { grid-template-columns: 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
+      .edu-timeline { padding-left: 32px; }
     }
   </style>
 </head>
@@ -482,9 +324,8 @@
   <div class="nav-logo">B<span>.</span>ACHARYA</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#portfolio">Work</a></li>
-    <li><a href="#services">Services</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#idols">Idols</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -495,34 +336,14 @@
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-eyebrow">Based in Jhapa, Nepal</div>
       <h1 class="hero-name">
         Bishwash
         <span class="accent-line">Acharya</span>
       </h1>
-      <div class="hero-role">Graphic Designer</div>
+      <div class="hero-role">Poet / Song Writer / Graphic Designer</div>
       <p class="hero-desc">
-        Crafting visual identities that don't just look beautiful — they <em>mean</em> something. 
-        I translate ideas, values, and stories into designs that leave a lasting impression on every audience they reach.
+        <em>"Time doesn't heal anythin' it just teaches us how to live with pain"</em>
       </p>
-      <div class="hero-ctas">
-        <a href="#portfolio" class="btn-primary">View My Work</a>
-        <a href="#contact" class="btn-outline">Let's Collaborate</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num">50<span>+</span></div>
-          <div class="stat-label">Projects Done</div>
-        </div>
-        <div>
-          <div class="stat-num">30<span>+</span></div>
-          <div class="stat-label">Happy Clients</div>
-        </div>
-        <div>
-          <div class="stat-num">4<span>+</span></div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-      </div>
     </div>
     <div class="hero-photo-wrap">
       <div class="photo-ring">
@@ -546,8 +367,6 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <div class="section-eyebrow">Who I Am</div>
-    <h2 class="section-title">Design is the<br/>language I speak</h2>
     <div class="about-grid reveal">
       <div class="about-img-wrap">
         <img src="image.jpeg" alt="Bishwash Acharya" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -557,307 +376,89 @@
             <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" fill="#a855f7" opacity="0.2"/>
           </svg>
         </div>
-        <div class="about-tag">Designer</div>
+        <div class="about-tag">ECHOLURK</div>
       </div>
       <div class="about-content">
-        <p>
-          Hello! I'm <strong>Bishwash Acharya</strong>, a passionate Graphic Designer from the heart of Jhapa, Nepal. My journey with design began with a fascination for how visuals can carry emotion, tell stories, and move people — often without a single word.
-        </p>
-        <p>
-          Over the years, I've honed a craft that sits at the intersection of <strong>strategy and aesthetics</strong>. I don't just make things look good — I make them work. Every color choice, every type pairing, every composition is a deliberate decision in service of the message.
-        </p>
-        <p>
-          Whether you're a startup looking to make your mark, an established brand ready to evolve, or a creative looking for a collaborator who thinks as deeply as they design — <strong>I'm that person.</strong> My work has helped clients elevate their presence, command attention, and build lasting recognition in competitive markets.
-        </p>
-        <p>
-          Based in Arjundhara, Jhapa, I bring a <strong>global design sensibility with local roots</strong> — and I believe that's what makes my work genuinely distinctive.
-        </p>
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <div class="highlight-icon">🎨</div>
-            <div class="highlight-label">Design Philosophy</div>
-            <div class="highlight-val">Purpose-driven, bold, and lasting</div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">📍</div>
-            <div class="highlight-label">Location</div>
-            <div class="highlight-val">Arjundhara 1, Jhapa, Nepal</div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">🌐</div>
-            <div class="highlight-label">Availability</div>
-            <div class="highlight-val">Local & Remote Projects</div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">⚡</div>
-            <div class="highlight-label">Response Time</div>
-            <div class="highlight-val">Within 24 hours</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
+<!-- EDUCATION -->
+<section id="education">
   <div class="container">
-    <div class="skills-header reveal">
-      <div>
-        <div class="section-eyebrow">Expertise</div>
-        <h2 class="section-title">Tools of the<br/>Trade</h2>
-      </div>
-      <p class="section-sub">I work with industry-standard tools and bring both technical skill and artistic intuition to every project.</p>
+    <div class="reveal">
+      <div class="section-eyebrow">My Journey</div>
+      <h2 class="section-title">Education</h2>
     </div>
-    <div class="skills-grid reveal">
-      <div class="skill-card">
-        <div class="skill-icon">🖌️</div>
-        <div class="skill-name">Adobe Photoshop</div>
-        <div class="skill-desc">Photo editing, compositing, digital painting, and raster design at the highest level.</div>
-        <div class="skill-level"><div class="skill-fill" style="width:95%"></div></div>
+    <div class="edu-timeline reveal">
+
+      <div class="edu-item">
+        <div class="edu-badge past"><span class="edu-badge-dot"></span> Completed</div>
+        <div class="edu-degree">Secondary Education Examination (SEE)</div>
+        <div class="edu-school">Rupratna Memorial Boarding School</div>
+        <div class="edu-location">Shanichare, Jhapa, Nepal</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-icon">✏️</div>
-        <div class="skill-name">Adobe Illustrator</div>
-        <div class="skill-desc">Vector illustration, logo design, icons, and scalable brand identity assets.</div>
-        <div class="skill-level"><div class="skill-fill" style="width:92%"></div></div>
+
+      <div class="edu-item">
+        <div class="edu-badge past"><span class="edu-badge-dot"></span> Completed</div>
+        <div class="edu-degree">Higher Secondary (+2)</div>
+        <div class="edu-school">Nidi Secondary School</div>
+        <div class="edu-location">Birtamode, Jhapa, Nepal</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-icon">📐</div>
-        <div class="skill-name">Adobe InDesign</div>
-        <div class="skill-desc">Print design, editorial layouts, brochures, magazines, and multi-page documents.</div>
-        <div class="skill-level"><div class="skill-fill" style="width:88%"></div></div>
+
+      <div class="edu-item current">
+        <div class="edu-badge active"><span class="edu-badge-dot"></span> Currently Studying</div>
+        <div class="edu-degree">Bachelor of Business Studies (BBS)</div>
+        <div class="edu-school">Kankai Multiple Campus</div>
+        <div class="edu-location">Birtamode, Jhapa, Nepal</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-icon">🎥</div>
-        <div class="skill-name">Adobe After Effects</div>
-        <div class="skill-desc">Motion graphics, animated logos, and visual storytelling through dynamic animation.</div>
-        <div class="skill-level"><div class="skill-fill" style="width:80%"></div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🖥️</div>
-        <div class="skill-name">Figma</div>
-        <div class="skill-desc">UI/UX design, prototyping, and collaborative design systems for digital products.</div>
-        <div class="skill-level"><div class="skill-fill" style="width:85%"></div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🎨</div>
-        <div class="skill-name">Brand Identity</div>
-        <div class="skill-desc">Building cohesive visual systems that make brands instantly recognizable and memorable.</div>
-        <div class="skill-level"><div class="skill-fill" style="width:97%"></div></div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
+<!-- IDOLS -->
+<section id="idols">
   <div class="container">
-    <div class="portfolio-header reveal">
-      <div>
-        <div class="section-eyebrow">Selected Work</div>
-        <h2 class="section-title">Designs That<br/>Define Brands</h2>
-      </div>
-      <div class="filter-tabs">
-        <button class="filter-tab active">All</button>
-        <button class="filter-tab">Branding</button>
-        <button class="filter-tab">Print</button>
-        <button class="filter-tab">Digital</button>
-        <button class="filter-tab">Motion</button>
-      </div>
+    <div class="reveal">
+      <div class="section-eyebrow">People I Look Up To</div>
+      <h2 class="section-title">Idols</h2>
     </div>
-    <div class="portfolio-grid reveal">
-      <!-- Featured -->
-      <div class="portfolio-item featured">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a0533,#0d0d1a);">
-          <div class="proj-icon">🎨</div>
-          <div class="proj-label">Upload your design here</div>
-        </div>
-        <div class="portfolio-overlay">
-          <div class="overlay-cat">Brand Identity</div>
-          <div class="overlay-title">Full Brand Identity System</div>
-          <a href="#" class="overlay-link">View Project →</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#0d1a2a,#0a0a0f);">
-          <div class="proj-icon">📦</div>
-          <div class="proj-label">Upload your design here</div>
-        </div>
-        <div class="portfolio-overlay">
-          <div class="overlay-cat">Packaging</div>
-          <div class="overlay-title">Product Packaging Design</div>
-          <a href="#" class="overlay-link">View Project →</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a0a1f,#0d0a15);">
-          <div class="proj-icon">📰</div>
-          <div class="proj-label">Upload your design here</div>
-        </div>
-        <div class="portfolio-overlay">
-          <div class="overlay-cat">Print</div>
-          <div class="overlay-title">Editorial Magazine Layout</div>
-          <a href="#" class="overlay-link">View Project →</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a1500,#0f0d00);">
-          <div class="proj-icon">🖼️</div>
-          <div class="proj-label">Upload your design here</div>
-        </div>
-        <div class="portfolio-overlay">
-          <div class="overlay-cat">Digital</div>
-          <div class="overlay-title">Social Media Campaign</div>
-          <a href="#" class="overlay-link">View Project →</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#001a12,#000d09);">
-          <div class="proj-icon">✒️</div>
-          <div class="proj-label">Upload your design here</div>
-        </div>
-        <div class="portfolio-overlay">
-          <div class="overlay-cat">Illustration</div>
-          <div class="overlay-title">Custom Vector Illustration</div>
-          <a href="#" class="overlay-link">View Project →</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-placeholder" style="background: linear-gradient(135deg,#1a000d,#0f0008);">
-          <div class="proj-icon">🎬</div>
-          <div class="proj-label">Upload your design here</div>
-        </div>
-        <div class="portfolio-overlay">
-          <div class="overlay-cat">Motion</div>
-          <div class="overlay-title">Animated Logo Reveal</div>
-          <a href="#" class="overlay-link">View Project →</a>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:50px;" class="reveal">
-      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:20px;">💡 Replace the placeholders above by adding your design images to the same folder as this file.</p>
-    </div>
-  </div>
-</section>
+    <div class="idols-grid reveal">
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="container">
-    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 0;">
-      <div class="section-eyebrow" style="justify-content:center;">What I Offer</div>
-      <h2 class="section-title">Services Built for<br/>Serious Brands</h2>
-      <p class="section-sub" style="margin:0 auto;">Every service I offer is designed to give your brand a competitive edge — visually, strategically, and culturally.</p>
-    </div>
-    <div class="services-grid reveal">
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <div class="service-title">Brand Identity Design</div>
-        <div class="service-desc">Complete visual identity systems including logo, color palette, typography, and brand guidelines that make your business unforgettable.</div>
-        <div class="service-tags">
-          <span class="tag">Logo Design</span>
-          <span class="tag">Brand Guide</span>
-          <span class="tag">Color Systems</span>
+      <div class="idol-card">
+        <div class="idol-img-wrap">
+          <img src="yama.png" alt="Yama Buddha" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="idol-img-placeholder" style="display:none;">YB</div>
         </div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <div class="service-title">Print & Publication Design</div>
-        <div class="service-desc">Brochures, posters, banners, business cards, and editorial layouts designed with precision for high-quality print output.</div>
-        <div class="service-tags">
-          <span class="tag">Brochures</span>
-          <span class="tag">Posters</span>
-          <span class="tag">Stationery</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <div class="service-title">Digital & Social Design</div>
-        <div class="service-desc">Eye-catching visuals for Instagram, Facebook, YouTube, and other platforms — crafted to stop the scroll and drive engagement.</div>
-        <div class="service-tags">
-          <span class="tag">Social Media</span>
-          <span class="tag">Thumbnails</span>
-          <span class="tag">Ads</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">04</div>
-        <div class="service-title">UI/UX & Web Design</div>
-        <div class="service-desc">Clean, intuitive, and visually stunning digital experiences that balance form with function for modern web and mobile audiences.</div>
-        <div class="service-tags">
-          <span class="tag">Figma</span>
-          <span class="tag">Prototyping</span>
-          <span class="tag">Web UI</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">05</div>
-        <div class="service-title">Motion Graphics</div>
-        <div class="service-desc">Animated logos, intros, explainer videos, and motion content that bring your brand to life across digital channels.</div>
-        <div class="service-tags">
-          <span class="tag">Logo Animation</span>
-          <span class="tag">After Effects</span>
-          <span class="tag">Reels</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">06</div>
-        <div class="service-title">Packaging Design</div>
-        <div class="service-desc">Product packaging that tells a brand story at first glance — from label design to unboxing experiences that create loyal customers.</div>
-        <div class="service-tags">
-          <span class="tag">Labels</span>
-          <span class="tag">Box Design</span>
-          <span class="tag">Mockups</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="container">
-    <div class="reveal" style="text-align:center;">
-      <div class="section-eyebrow" style="justify-content:center;">Client Words</div>
-      <h2 class="section-title">What People Are Saying</h2>
-    </div>
-    <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">"</div>
-        <div class="testi-text">Bishwash transformed our brand completely. His ability to understand what we stood for and translate it visually was extraordinary. Our clients noticed the difference immediately.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">R</div>
+        <div class="idol-header">
           <div>
-            <div class="testi-name">Ramesh Sharma</div>
-            <div class="testi-role-label">Business Owner, Jhapa</div>
+            <div class="idol-name">Yama Buddha</div>
+            <div class="idol-tag">Rapper · Poet · Legend</div>
           </div>
         </div>
+        <p class="idol-desc">
+          He didn't just rap — he bled on the mic. Yama Buddha showed me that your pain, your roots, your language can be art. A kid from Nepal who made the world listen without changing who he was. That kind of realness doesn't die. It lives in every line I write.
+        </p>
       </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">"</div>
-        <div class="testi-text">Working with Bishwash was a game changer. He brought creativity and professionalism in equal measure, and delivered beyond what we imagined. Highly recommended.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">S</div>
+
+      <div class="idol-card">
+        <div class="idol-img-wrap">
+          <img src="neymar.png" alt="Neymar Junior" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="idol-img-placeholder" style="display:none;">NJ</div>
+        </div>
+        <div class="idol-header">
           <div>
-            <div class="testi-name">Sita Pradhan</div>
-            <div class="testi-role-label">Marketing Head, Biratnagar</div>
+            <div class="idol-name">Neymar Junior</div>
+            <div class="idol-tag">Footballer · Artist · Free Spirit</div>
           </div>
         </div>
+        <p class="idol-desc">
+          People say he plays too much — I say that's exactly why I love him. Neymar never lost the kid in him. The joy, the flair, the courage to be different even when the world criticizes you. He reminded me that your style is your signature. Never let anyone take that from you.
+        </p>
       </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">"</div>
-        <div class="testi-text">The logo and brand kit he created for us was stunning. Every time I hand out my business card, people ask who designed it. That's the kind of impact Bishwash delivers.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">A</div>
-          <div>
-            <div class="testi-name">Anuj Thakur</div>
-            <div class="testi-role-label">Founder, Local Startup</div>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -867,68 +468,58 @@
   <div class="container">
     <div class="reveal">
       <div class="section-eyebrow">Get In Touch</div>
-      <h2 class="section-title">Let's Create Something<br/>Extraordinary</h2>
+      <h2 class="section-title">Let's Connect</h2>
     </div>
-    <div class="contact-grid reveal">
-      <div class="contact-info">
-        <p>Have a project in mind? Looking for a designer who brings both vision and execution to the table? I'd love to hear from you. Let's talk about what we can build together.</p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <div class="contact-icon">📧</div>
-            <div>
-              <div class="contact-label">Email</div>
-              <div class="contact-val">acharyabiswas444@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div>
-              <div class="contact-label">Phone</div>
-              <div class="contact-val">9709012866 / 9827911457</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <div class="contact-label">Location</div>
-              <div class="contact-val">Arjundhara 1, Jhapa, Nepal</div>
-            </div>
-          </div>
+    <div class="contact-items reveal">
+      <a class="contact-item" href="mailto:acharyabiswas444@gmail.com">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">acharyabiswas444@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-item" href="tel:+9779709012866">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">9709012866 / 9827911457</div>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Jhapa, Nepal</div>
         </div>
       </div>
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="John Doe" required />
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="john@example.com" required />
-          </div>
+      <a class="contact-item" href="https://www.facebook.com/bishwashacharya1327?rdid=AGIzhjLY9nl568hx&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HBwg1LD3p%2F" target="_blank" rel="noopener noreferrer">
+        <div class="contact-icon">🔵</div>
+        <div>
+          <div class="contact-label">Facebook</div>
+          <div class="contact-val">Bishwash Acharya</div>
         </div>
-        <div class="form-group">
-          <label>Service Needed</label>
-          <select>
-            <option value="">Select a service…</option>
-            <option>Brand Identity Design</option>
-            <option>Print & Publication Design</option>
-            <option>Digital & Social Design</option>
-            <option>UI/UX & Web Design</option>
-            <option>Motion Graphics</option>
-            <option>Packaging Design</option>
-            <option>Other</option>
-          </select>
+      </a>
+      <a class="contact-item" href="https://www.instagram.com/junior.besswashh?igsh=MXAyMzVxOWJlbnpscA%3D%3D" target="_blank" rel="noopener noreferrer">
+        <div class="contact-icon">📸</div>
+        <div>
+          <div class="contact-label">Instagram</div>
+          <div class="contact-val">@junior.besswashh</div>
         </div>
-        <div class="form-group">
-          <label>Project Details</label>
-          <textarea placeholder="Tell me about your project, goals, and timeline…" required></textarea>
+      </a>
+      <a class="contact-item" href="https://www.tiktok.com/@bess.decoded" target="_blank" rel="noopener noreferrer">
+        <div class="contact-icon">🎵</div>
+        <div>
+          <div class="contact-label">TikTok</div>
+          <div class="contact-val">@bess.decoded</div>
         </div>
-        <button type="submit" class="form-submit">Send Message →</button>
-        <div id="form-success" style="display:none; text-align:center; padding:16px; background:rgba(168,85,247,0.1); border:1px solid var(--accent); border-radius:8px; color:var(--accent); font-weight:600; font-size:0.88rem;">
-          ✅ Message sent! Bishwash will be in touch soon.
+      </a>
+      <a class="contact-item" href="https://www.youtube.com/@emcee_odin" target="_blank" rel="noopener noreferrer">
+        <div class="contact-icon">▶️</div>
+        <div>
+          <div class="contact-label">YouTube</div>
+          <div class="contact-val">@emcee_odin</div>
         </div>
-      </form>
+      </a>
     </div>
   </div>
 </section>
@@ -937,16 +528,9 @@
 <footer>
   <div class="footer-logo">B<span>.</span>ACHARYA</div>
   <div class="footer-copy">© 2025 Bishwash Acharya. All rights reserved.</div>
-  <div class="footer-socials">
-    <a class="social-btn" title="Facebook" href="#">f</a>
-    <a class="social-btn" title="Instagram" href="#">ig</a>
-    <a class="social-btn" title="Behance" href="#">Be</a>
-    <a class="social-btn" title="LinkedIn" href="#">in</a>
-  </div>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
@@ -958,34 +542,9 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => obs.observe(r));
 
-  // Filter tabs
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('form-success').style.display = 'block';
-    e.target.reset();
-    setTimeout(() => document.getElementById('form-success').style.display = 'none', 5000);
-  }
-
-  // Nav shrink on scroll
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     nav.style.padding = window.scrollY > 50 ? '12px 60px' : '20px 60px';
-  });
-
-  // Animate letters on hero name
-  window.addEventListener('load', () => {
-    const nameEl = document.querySelector('.hero-name');
-    if (!nameEl) return;
-    // Staggered CSS animation trigger
-    nameEl.style.animation = 'fadeInUp 0.9s ease forwards';
   });
 </script>
 </body>
