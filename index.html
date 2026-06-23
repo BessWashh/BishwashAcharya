@@ -125,16 +125,6 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
     }
     .photo-placeholder span { font-size: 0.8rem; color: var(--muted); letter-spacing: 1px; }
-    .badge {
-      position: absolute; bottom: 10px; right: -10px;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 50px; padding: 10px 18px;
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.78rem; font-weight: 600; color: var(--text);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    }
-    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.6;transform:scale(1.3);} }
 
     /* ── SHARED ── */
     section { padding: 100px 60px; }
@@ -177,11 +167,23 @@
       writing-mode: vertical-rl; text-orientation: mixed;
       transform: rotate(180deg); border-radius: 4px;
     }
+    .about-content {
+      display: flex; flex-direction: column; justify-content: center;
+    }
     .about-content p {
       font-size: 1rem; color: var(--muted); line-height: 1.9; margin-bottom: 20px;
     }
     .about-content p:last-child { margin-bottom: 0; }
     .about-content p strong { color: var(--text); }
+    .about-pills {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+    }
+    .about-pill {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 50px;
+      background: rgba(168,85,247,0.1); color: var(--accent);
+      border: 1px solid rgba(168,85,247,0.25);
+    }
 
     /* ── EDUCATION ── */
     #education { background: var(--black); }
@@ -355,10 +357,6 @@
           </svg>
           <span>Add image.jpg</span>
         </div>
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Available for Work
-        </div>
       </div>
     </div>
   </div>
@@ -376,9 +374,21 @@
             <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" fill="#a855f7" opacity="0.2"/>
           </svg>
         </div>
-        <div class="about-tag">ECHOLURK</div>
+
       </div>
       <div class="about-content">
+        <div class="section-eyebrow">Who I Am</div>
+        <h2 class="section-title">About Me</h2>
+        <p>
+          I'm <strong>Bishwash Acharya</strong> — a poet, songwriter, and graphic designer from <strong>Jhapa, Nepal</strong>. I'm currently pursuing my Bachelor of Business Studies at Kankai Multiple Campus, Birtamode.
+        </p>
+        <p>
+          Words have always been my first language. I write poetry and songs that come from real feelings — pain, growth, silence, and truth. Alongside writing, I work in graphic design, translating those same emotions into visuals that speak without sound.
+        </p>
+        <p>
+          You can find my work on YouTube under <strong>@emcee_odin</strong> and on TikTok as <strong>@bess.decoded</strong>. I'm always creating, always evolving.
+        </p>
+
       </div>
     </div>
   </div>
@@ -388,7 +398,6 @@
 <section id="education">
   <div class="container">
     <div class="reveal">
-      <div class="section-eyebrow">My Journey</div>
       <h2 class="section-title">Education</h2>
     </div>
     <div class="edu-timeline reveal">
@@ -422,14 +431,13 @@
 <section id="idols">
   <div class="container">
     <div class="reveal">
-      <div class="section-eyebrow">People I Look Up To</div>
       <h2 class="section-title">Idols</h2>
     </div>
     <div class="idols-grid reveal">
 
       <div class="idol-card">
         <div class="idol-img-wrap">
-          <img src="yama.png" alt="Yama Buddha" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="yama.jpg" alt="Yama Buddha" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="idol-img-placeholder" style="display:none;">YB</div>
         </div>
         <div class="idol-header">
@@ -445,7 +453,7 @@
 
       <div class="idol-card">
         <div class="idol-img-wrap">
-          <img src="neymar.png" alt="Neymar Junior" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="neymar.jpg" alt="Neymar Junior" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="idol-img-placeholder" style="display:none;">NJ</div>
         </div>
         <div class="idol-header">
